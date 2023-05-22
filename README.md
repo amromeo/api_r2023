@@ -5,6 +5,7 @@
 This introductory R virtual workshop aims to teach participants with little or no programming experience the basics of the R statistical programming language for reproducible laboratory data analytics. R is a freely available programming environment that is aimed squarely at common activities in data analysis including complex data manipulation, statistical analysis, automation, and publication-quality data visualization. We will introduce basic concepts of R programming as well as more generalizable best practices in working with laboratory data. 
 
 - Instructors: 
+  * Sarah Dudgeon
   * [Patrick Mathias](https://www.linkedin.com/in/pcmathias/)
   * [Amrom Obstfeld](https://www.chop.edu/doctors/obstfeld-amron)
   * [Joseph Rudolf](https://healthcare.utah.edu/fad/mddetail.php?physicianID=u6005682&name=joseph-w-rudolf)
