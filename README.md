@@ -17,10 +17,10 @@ This introductory R virtual workshop aims to teach participants with little or n
 
 For the best experience, please have the following ready before the workshop begins:
 
-**- We will use RStudio Cloud as our training environment. Please sign up for a free account [here](https://rstudio.cloud/).**
+**- We will use Posit (a.k.a. RStudio) Cloud as our training environment. Please sign up for a free account [here](https://Posit.cloud/).**
 - Preferably two monitors (or two laptops), one for the Zoom conference software, and one in which you will work. 
 - Install the latest version of [Zoom](https://zoom.us/download).
-- Install the latest version of [Google Chrome](https://www.google.com/chrome/) as some [older browsers](https://support.rstudio.com/hc/en-us/articles/227449447-Supported-browsers-for-RStudio-Connect) may not be compatible with the RStudio application).
+- Install the latest version of [Google Chrome](https://www.google.com/chrome/) as some [older browsers](https://support.posit.co/hc/en-us/articles/227449447-Supported-browsers-for-RStudio-Connect) may not be compatible with the RStudio application).
 
 ### Get Set...
 
