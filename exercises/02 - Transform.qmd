@@ -17,7 +17,7 @@ covid_testing <- read_csv("covid_testing.csv")
 select(covid_testing, mrn, last_name)   # select columns to keep
 ```
 
-### Pop Quiz 1
+### Knowledge Check 1
 
 ```{r}
 # Which of these would select just the first_name column from the covid_testing data frame?
@@ -37,7 +37,7 @@ select(covid_testing, First_Name)  #D
 filter(covid_testing, mrn == 5000078)  # filter to specific rows
 ```
 
-### Pop Quiz 2
+### Knowledge Check 2
 
 ```{r}
 # Which of these would filter the covid_testing data frame to tests with positive results?
@@ -59,7 +59,7 @@ covid_testing %>%
 	select(clinic_name)
 ```
 
-### Pop Quiz 3
+### Knowledge Check 3
 
 ```{r}
 #Which of the following is equivalent to:
