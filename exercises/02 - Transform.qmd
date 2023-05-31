@@ -4,19 +4,54 @@ format: html
 editor: visual
 ---
 
+```{r, message=FALSE}
+library(tidyverse)
+covid_testing <- read_csv("covid_testing.csv")
+```
+
 ## select( )
+
+### Example from slides
 
 ```{r}
 select(covid_testing, mrn, last_name)   # select columns to keep
 ```
 
+### Pop Quiz 1
+
+```{r}
+# Which of these would select just the first_name column from the covid_testing data frame?
+
+select(first_name, covid_testing)  #A
+select(covid_testing, first_name)  #B
+select(covid_testing, -first_name) #C
+select(covid_testing, First_Name)  #D
+
+```
+
 ## filter( )
+
+### Example from slides
 
 ```{r}
 filter(covid_testing, mrn == 5000078)  # filter to specific rows
 ```
 
-## Pipes: %\>%
+### Pop Quiz 2
+
+```{r}
+# Which of these would filter the covid_testing data frame to tests with positive results?
+
+filter(covid_testing, result == positive)   #A
+filter(covid_testing, result = "positive")  #B
+filter(covid_testing, result == "positive") #C
+filter(covid_testing, positive == "result") #D
+
+```
+
+## Pipes: %>%
+
+### Example from slides
 
 ```{r}
 covid_testing %>% 
@@ -24,7 +59,22 @@ covid_testing %>%
 	select(clinic_name)
 ```
 
+### Pop Quiz 3
+
+```{r}
+#Which of the following is equivalent to:
+covid_testing %>% select(result)
+
+covid_testing(select(result)) #A
+select(covid_testing(result)) #B
+select(result, covid_testing) #C
+select(covid_testing, result) #D
+
+```
+
 ## mutate( )
+
+### Example from slides
 
 ```{r}
 covid_testing %>%
@@ -33,37 +83,75 @@ covid_testing %>%
 
 ## Your Turn #1
 
-Use select, filter and %\>% in the following chunk to write a sequence of functions that:
+### Exercise 1
 
-a\) Filters to tests from the clinic (\`clinic_name\`) of "picu"
+Fill in the blanks: use select, filter and %>% in the following chunk to write a data pipeline that:
 
-b\) Selects the column with the received-to-verified turnaround time (\`rec_ver_tat\`) as well as the day from start of the pandemic (\`pan_day\`)
+a) Filters to tests from the clinic (column name is `clinic_name`) of "picu"
+
+b) Selects the column with the received-to-verified turnaround time (column name is `rec_ver_tat`) as well as the day from start of the pandemic (`pan_day`)
 
 ```{r}
 _________ %>% # name of data frame goes here
-  filter(_______) %>% 
-  select(________, ________) 
+  filter(_______) %>% #logical statement defining orders where clinic_name is picu
+  select(________, ________)  
 ```
 
-Use mutate with %\>% to create a new column named "total_tat" containing the total turnaround time for each test (sum of \`col_rec_tat\` and \`rec_ver_tat\`). Store this output in the covid_testing object and view the data in a new tab by calling the object with the View( ) function.
+### Exercise 2
+
+a) Use mutate with %>% to create a data frame with a new column named "total_tat" containing the total turnaround time for each test (sum of `col_rec_tat` and `rec_ver_tat`). 
+
+b) Store this new data frame back in the covid_testing object. 
+
+c) View the data in a new tab by calling the object with the View( ) function.
 
 ```{r}
 ________ <- ________ %>%
 	mutate(total_tat = ________)
-View(________)
+
+View(covid_testing)
 ```
 
 **Stop Here**
 
+## group_by
+
+### Example from slides
+
+```{r}
+covid_testing %>%
+	select(mrn, pan_day, clinic_name) %>%
+	group_by(pan_day, clinic_name)
+```
+
+## summarize
+
+### Example from slides
+
+```{r}
+covid_testing %>%
+		summarize(order_count = n(),
+		          day_count = n_distinct(pan_day))
+```
+
+```{r}
+covid_testing %>%
+	group_by(pan_day) %>%
+	summarize(order_count = n())
+```
+
 ## Your Turn #2
 
-You are interested in understanding the relative utilization of COVID tests and the range of turnaround times across locations, which are captured with the clinic_name variable. Use group_by and summarize to calculate:
+You are interested in understanding the relative utilization of COVID tests and the range of turnaround times across locations, which are captured with the  variable. Use group_by and summarize to:
 
-a\) The number of orders ordered by each clinic/unit, creating a new summary variable num_orders
+a) Group the `covid_testing` dataframe by clinic/unit (column is `clinic_name`)
 
-b\) The median total turnaround time for each clinic/unit (using the total_tat variable you created in the previous exercise), using a new summary variable median_tat.
+b) Create a new summary variable, "num_orders", containing the calculated number of orders ordered by each clinic/unit.
 
-The function to calculate a median is (predictably) median(...).
+c) Create a new summary variable, "median_tat", containing the calculated median receive to verify turnaround time (`rec_ver_tat` column) for each clinic/unit.
+
+HINT: The function to count rows was discussed in the lecture.
+HINT: The function to calculate a median is (predictably) median(...).
 
 Store the output from your summarization in a new object called covid_summary.
 
@@ -72,5 +160,5 @@ covid_summary <- ________ %>%
   group_by(________) %>%
   summarize(num_orders = ________,
             median_tat = ________)
-View(covid_summary)
+View(________)
 ```
