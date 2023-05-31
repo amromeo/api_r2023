@@ -120,8 +120,7 @@ View(covid_testing)
 
 ```{r}
 covid_testing %>%
-	select(mrn, pan_day, clinic_name) %>%
-	group_by(pan_day, clinic_name)
+	group_by(pan_day)
 ```
 
 ## summarize
