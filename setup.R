@@ -1,1 +1,1 @@
-install.packages(c("tidyverse","lubridate","rmarkdown","plotly","flexdashboard"))
+install.packages(c("tidyverse","lubridate","rmarkdown","plotly","flexdashboard","DT"))
